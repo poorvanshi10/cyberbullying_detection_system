@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Bullying Detection System</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js for 3D elements -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Lucide Icons for UI elements -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            dark: '#0f172a',
+                            light: '#1e293b',
+                            accent: '#38bdf8',
+                            danger: '#ef4444',
+                            safe: '#10b981'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        /* 3D Canvas Background */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-cyber-accent selection:text-white">
+
+    <!-- 3D Environment Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-cyber-accent/20 rounded-lg border border-cyber-accent/50">
+                        <i data-lucide="shield-alert" class="w-6 h-6 text-cyber-accent"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">SafeNet<span class="text-cyber-accent">.AI</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-cyber-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">The Problem</a>
+                        <a href="#tech" class="hover:text-cyber-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Tech Stack</a>
+                        <a href="#demo" class="hover:text-cyber-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Live Demo</a>
+                        <a href="mailto:poorvanshi04@gmail.com" class="bg-cyber-accent text-cyber-dark hover:bg-sky-400 px-4 py-2 rounded-full text-sm font-bold transition-all transform hover:scale-105">
+                            Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyber-accent/10 border border-cyber-accent/30 text-cyber-accent text-sm font-semibold mb-8 animate-pulse">
+                <i data-lucide="activity" class="w-4 h-4"></i>
+                Advanced NLP Detection System
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+                Detecting <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-accent to-purple-500 text-glow">Cyber Bullying</span><br>
+                Before It Escalates.
+            </h1>
+            <p class="mt-4 max-w-2xl text-lg text-slate-300 mx-auto mb-10 leading-relaxed">
+                Leveraging artificial intelligence and machine learning to create safer digital spaces by identifying toxic, abusive, and harmful language in real-time.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#demo" class="bg-cyber-accent text-cyber-dark hover:bg-sky-400 px-8 py-4 rounded-full text-lg font-bold transition-all transform hover:-translate-y-1 shadow-[0_0_20px_rgba(56,189,248,0.4)]">
+                    Test the Model
+                </a>
+                <a href="#about" class="glass-panel hover:bg-white/10 px-8 py-4 rounded-full text-lg font-bold transition-all border border-slate-600">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why It Matters Section -->
+    <section id="about" class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 md:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 flex items-center gap-3">
+                            <i data-lucide="alert-triangle" class="text-cyber-accent"></i>
+                            Why This Matters
+                        </h2>
+                        <div class="space-y-6 text-slate-300 text-lg leading-relaxed">
+                            <p>
+                                Cyberbullying transcends physical boundaries, turning what should be safe digital spaces into environments of constant anxiety. Unlike traditional bullying, online harassment is persistent, permanent, and often anonymous.
+                            </p>
+                            <p>
+                                Victims frequently suffer from severe psychological distress, including depression, anxiety, low self-esteem, and in tragic cases, suicidal ideation. The anonymity of the internet often emboldens aggressors, making the harassment more vicious.
+                            </p>
+                            <p class="font-semibold text-white border-l-4 border-cyber-accent pl-4">
+                                Automated detection systems are critical. By identifying toxic language early, we can alert moderators, warn users before they post, and ultimately cultivate a more empathetic and secure digital ecosystem.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <!-- Image related to cyber bullying -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-cyber-accent to-purple-600 rounded-2xl transform rotate-3 scale-105 opacity-50 group-hover:rotate-6 transition-transform duration-500"></div>
+                        <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                             alt="Conceptual image representing digital isolation and cyber bullying" 
+                             class="relative z-10 rounded-2xl shadow-2xl w-full object-cover h-[400px] grayscale-[30%] group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech" class="py-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Architecture & <span class="text-cyber-accent">Tech Stack</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Built on modern frameworks and advanced machine learning models to ensure accuracy, speed, and reliability.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Stack Item 1 -->
+                <div class="glass-panel p-6 rounded-2xl hover:border-cyber-accent/50 transition-colors group">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="brain-circuit" class="text-blue-400 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Machine Learning</h3>
+                    <p class="text-sm text-slate-400">TensorFlow & Scikit-learn for training classification models on large datasets of toxic comments.</p>
+                </div>
+                <!-- Stack Item 2 -->
+                <div class="glass-panel p-6 rounded-2xl hover:border-purple-500/50 transition-colors group">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="message-square" class="text-purple-400 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">NLP Processing</h3>
+                    <p class="text-sm text-slate-400">NLTK and Spacy used for tokenization, lemmatization, and understanding contextual semantics.</p>
+                </div>
+                <!-- Stack Item 3 -->
+                <div class="glass-panel p-6 rounded-2xl hover:border-green-500/50 transition-colors group">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="server" class="text-green-400 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Backend API</h3>
+                    <p class="text-sm text-slate-400">FastAPI/Flask creating rapid endpoints to process text payloads and return toxicity scores in milliseconds.</p>
+                </div>
+                <!-- Stack Item 4 -->
+                <div class="glass-panel p-6 rounded-2xl hover:border-orange-500/50 transition-colors group">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="layout" class="text-orange-400 w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Frontend Interface</h3>
+                    <p class="text-sm text-slate-400">React.js and Tailwind CSS delivering a responsive, interactive, and visually accessible user experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Functional Demo Section -->
+    <section id="demo" class="py-20 relative z-10 mb-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden">
+                <!-- Decorative background elements -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-cyber-accent/10 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
+                
+                <div class="relative z-10">
+                    <div class="text-center mb-10">
+                        <h2 class="text-3xl font-bold mb-2">Test the Detection Engine</h2>
+                        <p class="text-slate-400">Type a message below to see the NLP model simulation in action.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label for="inputText" class="block text-sm font-medium text-slate-300 mb-2">Message Input</label>
+                            <textarea id="inputText" rows="4" 
+                                class="w-full bg-cyber-dark/50 border border-slate-600 rounded-xl p-4 text-white focus:ring-2 focus:ring-cyber-accent focus:border-transparent transition-all outline-none resize-none placeholder-slate-500"
+                                placeholder="Type a message here (e.g., 'You are amazing' or 'I hate you, you are ugly')..."></textarea>
+                        </div>
+
+                        <button id="analyzeBtn" onclick="analyzeText()" class="w-full bg-gradient-to-r from-cyber-accent to-blue-600 hover:from-blue-500 hover:to-purple-600 text-white font-bold py-4 px-8 rounded-xl shadow-lg transform transition-all active:scale-95 flex justify-center items-center gap-2">
+                            <i data-lucide="scan-line" class="w-5 h-5"></i>
+                            Analyze Text
+                        </button>
+
+                        <!-- Results Container (Hidden initially) -->
+                        <div id="resultContainer" class="hidden mt-8 p-6 rounded-xl border transition-all duration-500">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-white flex items-center gap-2">
+                                    Analysis Result:
+                                </h3>
+                                <span id="statusBadge" class="px-4 py-1 rounded-full text-sm font-bold tracking-wide"></span>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-slate-400">Toxicity Probability</span>
+                                        <span id="toxicityScore" class="font-mono font-bold text-white">0%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-700 rounded-full h-2">
+                                        <div id="toxicityBar" class="bg-cyber-danger h-2 rounded-full transition-all duration-1000 w-0"></div>
+                                    </div>
+                                </div>
+                                <p id="actionMessage" class="text-sm mt-4 italic"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 glass-panel relative z-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i data-lucide="shield-check" class="w-6 h-6 text-cyber-accent"></i>
+                <span class="font-bold text-lg">SafeNet System</span>
+            </div>
+            
+            <div class="text-center md:text-right text-slate-400 text-sm">
+                <p>Designed for Academic Purposes & Cyber Safety Awareness.</p>
+                <div class="mt-2 flex items-center justify-center md:justify-end gap-2 text-white">
+                    <i data-lucide="mail" class="w-4 h-4 text-cyber-accent"></i>
+                    <a href="mailto:poorvanshi04@gmail.com" class="hover:text-cyber-accent transition-colors">poorvanshi04@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <!-- Mock Detection Logic -->
+    <script>
+        function analyzeText() {
+            const input = document.getElementById('inputText').value.toLowerCase();
+            const btn = document.getElementById('analyzeBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            const statusBadge = document.getElementById('statusBadge');
+            const toxicityScore = document.getElementById('toxicityScore');
+            const toxicityBar = document.getElementById('toxicityBar');
+            const actionMessage = document.getElementById('actionMessage');
+
+            if (!input.trim()) {
+                alert("Please enter some text to analyze.");
+                return;
+            }
+
+            // Simulate Loading
+            btn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Processing Models...`;
+            btn.disabled = true;
+            resultContainer.classList.add('hidden');
+            toxicityBar.style.width = '0%';
+
+            // Mock Dictionary for Simulation
+            const toxicKeywords = ['hate', 'ugly', 'stupid', 'idiot', 'die', 'kill', 'dumb', 'loser', 'trash', 'worthless'];
+            
+            setTimeout(() => {
+                let toxicityCount = 0;
+                let foundWords = [];
+
+                toxicKeywords.forEach(word => {
+                    if (input.includes(word)) {
+                        toxicityCount++;
+                        foundWords.push(word);
+                    }
+                });
+
+                // Calculate a mock score based on findings
+                let score = 0;
+                if (toxicityCount > 0) {
+                    score = Math.min(100, 40 + (toxicityCount * 20) + Math.floor(Math.random() * 10)); // Generate a high score if toxic
+                } else {
+                    score = Math.floor(Math.random() * 15); // Generate a low score if safe
+                }
+
+                // Update UI based on score
+                resultContainer.classList.remove('hidden');
+                toxicityScore.innerText = `${score}%`;
+                
+                // Allow browser reflow before animating bar
+                setTimeout(() => {
+                    toxicityBar.style.width = `${score}%`;
+                }, 50);
+
+                if (score > 40) {
+                    // Toxic Styling
+                    resultContainer.className = 'mt-8 p-6 rounded-xl border border-red-500/50 bg-red-900/10 transition-all duration-500 block';
+                    statusBadge.className = 'px-4 py-1 rounded-full text-sm font-bold tracking-wide bg-red-500/20 text-red-400 border border-red-500/50';
+                    statusBadge.innerHTML = '<i data-lucide="shield-off" class="w-4 h-4 inline mr-1"></i> Toxic Content Detected';
+                    toxicityBar.className = 'bg-red-500 h-2 rounded-full transition-all duration-1000 ease-out';
+                    actionMessage.className = 'text-sm mt-4 text-red-300';
+                    actionMessage.innerText = `Flagged due to aggressive or harmful language semantics. (Detected markers: ${foundWords.join(', ')})`;
+                } else {
+                    // Safe Styling
+                    resultContainer.className = 'mt-8 p-6 rounded-xl border border-green-500/50 bg-green-900/10 transition-all duration-500 block';
+                    statusBadge.className = 'px-4 py-1 rounded-full text-sm font-bold tracking-wide bg-green-500/20 text-green-400 border border-green-500/50';
+                    statusBadge.innerHTML = '<i data-lucide="shield-check" class="w-4 h-4 inline mr-1"></i> Safe Content';
+                    toxicityBar.className = 'bg-green-500 h-2 rounded-full transition-all duration-1000 ease-out';
+                    actionMessage.className = 'text-sm mt-4 text-green-300';
+                    actionMessage.innerText = 'This message appears to be safe and complies with community guidelines.';
+                }
+
+                // Reset Button and re-render icons
+                btn.innerHTML = `<i data-lucide="scan-line" class="w-5 h-5 inline mr-2"></i> Analyze Text`;
+                btn.disabled = false;
+                lucide.createIcons();
+
+            }, 1500); // Simulate network latency
+        }
+    </script>
+
+    <!-- Three.js 3D Background Logic -->
+    <script>
+        const container = document.getElementById('canvas-container');
+
+        // Scene setup
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2('#0f172a', 0.001);
+
+        // Camera setup
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 400;
+
+        // Renderer setup
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        // Create Particles/Nodes representing digital connections
+        const geometry = new THREE.BufferGeometry();
+        const particlesCount = 800; // Number of nodes
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            // Spread nodes in a large sphere
+            posArray[i] = (Math.random() - 0.5) * 1200;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        // Material for nodes
+        const material = new THREE.PointsMaterial({
+            size: 3,
+            color: '#38bdf8', // Cyber accent color
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending
+        });
+
+        // Create Points object
+        const particlesMesh = new THREE.Points(geometry, material);
+        scene.add(particlesMesh);
+
+        // Lines connecting close particles
+        const lineMaterial = new THREE.LineBasicMaterial({
+            color: '#38bdf8',
+            transparent: true,
+            opacity: 0.15
+        });
+
+        // Mouse interaction variables
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - windowHalfX);
+            mouseY = (event.clientY - windowHalfY);
+        });
+
+        // Animation Loop
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+
+            // Rotate the entire network slowly
+            particlesMesh.rotation.y = elapsedTime * 0.05;
+            particlesMesh.rotation.x = elapsedTime * 0.02;
+
+            // Parallax effect based on mouse
+            targetX = mouseX * 0.001;
+            targetY = mouseY * 0.001;
+            
+            particlesMesh.rotation.y += 0.05 * (targetX - particlesMesh.rotation.y);
+            particlesMesh.rotation.x += 0.05 * (targetY - particlesMesh.rotation.x);
+
+            renderer.render(scene, camera);
+        }
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Start Animation
+        animate();
+    </script>
+</body>
+</html>
