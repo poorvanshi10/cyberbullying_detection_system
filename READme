@@ -1,0 +1,45 @@
+# 🛡️ Cyber-Shield AI: Real-time Toxicity Detection
+
+ A sophisticated Machine Learning system designed to identify and mitigate digital harassment using Natural Language Processing (NLP).
+
+---
+
+## 📖 Overview
+Cyber-Shield AI is a full-stack web application that leverages **Logistic Regression** to classify social media comments into "Toxic" or "Non-Toxic" categories. Developed to combat the rising tide of online harassment, this project focuses on the ethical application of AI for social safety.
+
+### The Impact
+Cyberbullying affects millions of users daily, leading to:
+* **Psychological Toll:** Increased anxiety and depression.
+* **Social Isolation:** Withdrawal from digital and physical communities.
+* **Academic Decline:** Significant drop in concentration and performance.
+
+---
+
+## 🛠️ Tech Stack
+The system is built using a modern Python-based stack:
+
+| Component | Technology |
+| :--- | :--- |
+| **Language** | Python 3.9+ |
+| **Machine Learning** | Scikit-Learn (Logistic Regression) |
+| **NLP** | TF-IDF Vectorization, NLTK |
+| **Backend** | Flask |
+| **Frontend** | Tailwind CSS (Dark Mode / Glassmorphism) |
+| **Dataset** | 40,000+ Classified Tweets/Comments |
+
+---
+
+## 🚀 Features
+* **Real-time Analysis:** High-speed text classification with zero latency.
+* **Modern UI:** Responsive, Webflow-inspired Dark Mode interface with Vivid Purple accents.
+* **Pre-processing Pipeline:** Custom text cleaning (regex, stop-word removal, and tokenization).
+* **Research-Driven:** Detailed documentation on the social impact of cyberbullying.
+
+---
+
+## 🔧 Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone [https://github.com/your-username/cyber-shield-ai.git](https://github.com/your-username/cyber-shield-ai.git)
+   cd cyber-shield-ai
