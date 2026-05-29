@@ -1,11 +1,11 @@
-# 🛡️ Cyber-Shield AI: Real-time Toxicity Detection
+# 🛡️ Guardian AI: Real-time Toxicity Detection
 
  A sophisticated Machine Learning system designed to identify and mitigate digital harassment using Natural Language Processing (NLP).
 
 ---
 
 ## 📖 Overview
-Cyber-Shield AI is a full-stack web application that leverages **Logistic Regression** to classify social media comments into "Toxic" or "Non-Toxic" categories. Developed to combat the rising tide of online harassment, this project focuses on the ethical application of AI for social safety.
+Guardian AI is a full-stack web application that leverages **Logistic Regression** to classify social media comments into "Toxic" or "Non-Toxic" categories. Developed to combat the rising tide of online harassment, this project focuses on the ethical application of AI for social safety.
 
 ### The Impact
 Cyberbullying affects millions of users daily, leading to:
