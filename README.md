@@ -2,8 +2,8 @@
 
 > An interactive, visually engaging frontend for an AI-powered toxicity detection engine.
 
-## 🎯 Project Overview
-SafeNet is a frontend architecture designed to demonstrate how artificial intelligence can be used to combat cyberbullying. It features a modern glassmorphism interface and a reactive 3D background to simulate a live digital network. The ultimate goal of this project is to show how real-time NLP (Natural Language Processing) can identify harmful language and foster safer online communities.
+## 🎯 Project Overview:
+Guardian AI is a frontend architecture designed to demonstrate how artificial intelligence can be used to combat cyberbullying. It features a modern glassmorphism interface and a reactive 3D background to simulate a live digital network. The ultimate goal of this project is to show how real-time NLP (Natural Language Processing) can identify harmful language and foster safer online communities.
 
 ## ✨ Key Features
 * **Simulated AI Analysis:** Type a message and watch the system instantly evaluate its toxicity and provide contextual feedback.
