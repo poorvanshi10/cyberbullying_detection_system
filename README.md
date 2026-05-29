@@ -1,4 +1,4 @@
-# 🛡️ SafeNet: Cyber Bullying Detection System
+# 🛡️ Guardian AI: Cyber Bullying Detection System
 
 > An interactive, visually engaging frontend for an AI-powered toxicity detection engine.
 
